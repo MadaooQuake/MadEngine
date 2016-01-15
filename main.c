@@ -76,15 +76,34 @@ int WINAPI WinMain(HINSTANCE hInstance,
         else
         {
             /* OpenGL animation code goes here */
-
             glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             glClear(GL_COLOR_BUFFER_BIT);
-            glBegin(GL_QUADS);
 
-            glVertex2f(-0.8, 0.8);
-            glVertex2f(0.8, 0.8);
-            glVertex2f(0.8, -0.8);
-            glVertex2f(-0.8, -0.8);
+            glBegin(GL_QUADS);
+            glVertex2f(-0.5, 0.6);
+            glVertex2f(0.55, 0.6);
+            glVertex2f(0.55, 0.55);
+            glVertex2f(-0.5, 0.55);
+
+            glVertex2f(-0.55, 0.95);
+            glVertex2f(-0.50, 0.95);
+            glVertex2f(-0.50, -1.0);
+            glVertex2f(-0.55, -1.0);
+
+            glVertex2f(-0.5, 0.3);
+            glVertex2f(0.75, 0.3);
+            glVertex2f(0.75, 0.25);
+            glVertex2f(-0.5, 0.25);
+
+            glVertex2f(-0.2, 0.00);
+            glVertex2f(1.0, 0.00);
+            glVertex2f(1.0, -0.05);
+            glVertex2f(-0.2, -0.05);
+
+            glVertex2f(-0.5, -0.4);
+            glVertex2f(1.0, -0.4);
+            glVertex2f(1.0, -0.45);
+            glVertex2f(-0.5, -0.45);
 
             glEnd();
 
