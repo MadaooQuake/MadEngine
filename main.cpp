@@ -1,10 +1,12 @@
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 #include <stdio.h>
+
 static void error_callback(int error, const char* description)
 {
     fputs(description, stderr);
 }
+
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
@@ -38,7 +40,7 @@ int main(void)
         glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        //glRotatef((float) glfwGetTime() * 1.f, 0.f, 0.f, 1.f);
+
         glBegin(GL_QUADS);
         glColor3f(0.37, 0.30, 0.22);
         glVertex2f(-0.5, 0.6);
@@ -72,8 +74,20 @@ int main(void)
         glVertex2f(1.0, -0.7);
         glVertex2f(1.0, -1.0);
         glVertex2f(-0.5, -1.0);
-
         glEnd();
+
+        glRotatef((float) glfwGetTime() * 50.f, 0.f, 0.f, 1.f);
+        glBegin(GL_TRIANGLES);
+        glColor3f(0.0f, 0.0f, 1.0f); // Blue
+        glVertex2f(0.1f, -0.6f);
+        glVertex2f(0.7f, -0.6f);
+        glVertex2f(0.4f, -0.1f);
+
+        glVertex2f(-0.1f, 0.6f);
+        glVertex2f(-0.7f, 0.6f);
+        glVertex2f(-0.4f, 0.1f);
+        glEnd();
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
