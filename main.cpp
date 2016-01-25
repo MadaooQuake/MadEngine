@@ -1,6 +1,7 @@
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 static void error_callback(int error, const char* description)
 {
@@ -76,17 +77,25 @@ int main(void)
         glVertex2f(-0.5, -1.0);
         glEnd();
 
-        glRotatef((float) glfwGetTime() * 50.f, 0.f, 0.f, 1.f);
+        // Now draw the triangle
+        glPushMatrix();
+        glRotatef((float) glfwGetTime() * 100.0f, 0.f, 0.f, 1.f);
         glBegin(GL_TRIANGLES);
         glColor3f(0.0f, 0.0f, 1.0f); // Blue
         glVertex2f(0.1f, -0.6f);
         glVertex2f(0.7f, -0.6f);
         glVertex2f(0.4f, -0.1f);
+        glEnd();
+        glPopMatrix();
 
+        glPushMatrix();
+        glRotatef((float) glfwGetTime() * 100.0f, 10.f, 0.f, 1.f);
+        glBegin(GL_TRIANGLES);
         glVertex2f(-0.1f, 0.6f);
         glVertex2f(-0.7f, 0.6f);
         glVertex2f(-0.4f, 0.1f);
         glEnd();
+        glPopMatrix();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
