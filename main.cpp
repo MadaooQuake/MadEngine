@@ -2,19 +2,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <iostream>
+#include "include/pinko.h"
 
-static void error_callback(int error, const char* description)
-{
-    fputs(description, stderr);
-}
+static void error_callback(int error, const char* description);
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, GL_TRUE);
-}
 int main(void)
 {
+    double position = 0.0f;
     GLFWwindow* window;
     glfwSetErrorCallback(error_callback);
     if (!glfwInit())
@@ -41,6 +37,16 @@ int main(void)
         glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+
+        glPushMatrix();
+        glRotatef((float) glfwGetTime() * 100.0f, 0.f, 0.f, 1.f);
+        glBegin(GL_TRIANGLES);
+        glColor3f(0.0f, 0.0f, 1.0f); // Blue
+        glVertex2f(0.1f, -0.6f);
+        glVertex2f(0.7f, -0.6f);
+        glVertex2f(0.4f, -0.1f);
+        glEnd();
+        glPopMatrix();
 
         glBegin(GL_QUADS);
         glColor3f(0.37, 0.30, 0.22);
@@ -78,29 +84,66 @@ int main(void)
         glEnd();
 
         // Now draw the triangle
-        glPushMatrix();
-        glRotatef((float) glfwGetTime() * 100.0f, 0.f, 0.f, 1.f);
-        glBegin(GL_TRIANGLES);
-        glColor3f(0.0f, 0.0f, 1.0f); // Blue
-        glVertex2f(0.1f, -0.6f);
-        glVertex2f(0.7f, -0.6f);
-        glVertex2f(0.4f, -0.1f);
-        glEnd();
-        glPopMatrix();
 
-        glPushMatrix();
-        glRotatef((float) glfwGetTime() * 100.0f, 10.f, 0.f, 1.f);
-        glBegin(GL_TRIANGLES);
-        glVertex2f(-0.1f, 0.6f);
-        glVertex2f(-0.7f, 0.6f);
-        glVertex2f(-0.4f, 0.1f);
-        glEnd();
-        glPopMatrix();
 
+//        glPushMatrix();
+//        //glRotatef((float) glfwGetTime() * 100.0f, 10.f, 0.f, 1.f);
+//        glTranslatef((float) glfwGetTime() * 0.5f, 0.f, 0.f);
+//        glBegin(GL_TRIANGLES);
+//        glVertex2f(-0.1f, 0.6f);
+//        glVertex2f(-0.7f, 0.6f);
+//        glVertex2f(-0.4f, 0.1f);
+//        glEnd();
+//        glPopMatrix();
+
+        //another item :D
+        glTranslatef(position, 0.f, 0.f);
+        glBegin(GL_POLYGON);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glVertex2f(-0.32f, 0.62f);
+        glVertex2f(-0.34f, 0.62f);
+        glVertex2f(-0.36f, 0.62f);
+        glVertex2f(-0.36f, 0.62f);
+        glVertex2f(-0.36f, 0.6f);
+        glVertex2f(-0.38f, 0.6f);
+        glVertex2f(-0.38f, 0.62f);
+        glVertex2f(-0.38f, 0.64f);
+        glVertex2f(-0.34f, 0.68f);
+        glVertex2f(-0.24f, 0.68f);
+        glVertex2f(-0.2f, 0.64f);
+        glVertex2f(-0.2f, 0.62f);
+        glVertex2f(-0.26f, 0.62f);
+        glVertex2f(-0.26f, 0.6f);
+        glVertex2f(-0.28f, 0.6f);
+        glVertex2f(-0.28f, 0.62f);
+        glVertex2f(-0.34f, 0.62f);
+        glEnd();
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
     glfwDestroyWindow(window);
     glfwTerminate();
     exit(EXIT_SUCCESS);
+}
+
+static void error_callback(int error, const char* description)
+{
+    fputs(description, stderr);
+}
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    switch(key) {
+    case 262:
+        std::cout << "prawo";
+        break;
+    case 263:
+        std::cout << "lewo";
+        break;
+    case GLFW_KEY_ESCAPE:
+        glfwSetWindowShouldClose(window, GL_TRUE);
+        break;
+    default:
+        break;
+    }
 }
