@@ -8,6 +8,8 @@
 static void error_callback(int error, const char* description);
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
+pinko MyPinko;
+
 int main(void)
 {
     double position = 0.0f;
@@ -97,27 +99,13 @@ int main(void)
 //        glPopMatrix();
 
         //another item :D
-        glTranslatef(position, 0.f, 0.f);
-        glBegin(GL_POLYGON);
-        glColor3f(1.0f, 1.0f, 1.0f);
-        glVertex2f(-0.32f, 0.62f);
-        glVertex2f(-0.34f, 0.62f);
-        glVertex2f(-0.36f, 0.62f);
-        glVertex2f(-0.36f, 0.62f);
-        glVertex2f(-0.36f, 0.6f);
-        glVertex2f(-0.38f, 0.6f);
-        glVertex2f(-0.38f, 0.62f);
-        glVertex2f(-0.38f, 0.64f);
-        glVertex2f(-0.34f, 0.68f);
-        glVertex2f(-0.24f, 0.68f);
-        glVertex2f(-0.2f, 0.64f);
-        glVertex2f(-0.2f, 0.62f);
-        glVertex2f(-0.26f, 0.62f);
-        glVertex2f(-0.26f, 0.6f);
-        glVertex2f(-0.28f, 0.6f);
-        glVertex2f(-0.28f, 0.62f);
-        glVertex2f(-0.34f, 0.62f);
-        glEnd();
+        position += MyPinko.getMove();
+        glPushMatrix();
+        glTranslatef((float) position, 0.f, 0.f);
+        MyPinko.generatePinko();
+        glPopMatrix();
+        MyPinko.cleanMove();
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -135,10 +123,10 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 {
     switch(key) {
     case 262:
-        std::cout << "prawo";
+        MyPinko.goForward();
         break;
     case 263:
-        std::cout << "lewo";
+        MyPinko.goBack();
         break;
     case GLFW_KEY_ESCAPE:
         glfwSetWindowShouldClose(window, GL_TRUE);
