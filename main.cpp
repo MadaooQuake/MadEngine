@@ -5,6 +5,7 @@
 #include <iostream>
 #include "include/pinko.h"
 #include "include/level0.h"
+#include "include/physics.h"
 
 static void error_callback(int error, const char* description);
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -14,6 +15,7 @@ pinko MyPinko;
 int main(void)
 {
     level0 level;
+    physics physic;
     double position = 0.0f;
     GLFWwindow* window;
     glfwSetErrorCallback(error_callback);
@@ -47,6 +49,10 @@ int main(void)
         //another item :D
         position += MyPinko.getMove();
         glPushMatrix();
+        if(physic.checkExitToBorder(position, 0.0f) == true)
+        {
+            position -= MyPinko.getMove();
+        }
         glTranslatef((float) position, 0.f, 0.f);
         MyPinko.generatePinko();
         glPopMatrix();
