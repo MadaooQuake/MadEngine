@@ -1,8 +1,12 @@
 #include <GLFW/glfw3.h>
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+
 #include <iostream>
+#include <set>
+
 #include "include/pinko.h"
 #include "include/level0.h"
 #include "include/physics.h"
@@ -16,7 +20,7 @@ int main(void)
 {
     level0 level;
     physics physic;
-    double position = 0.0f;
+    double position = 0.0f, positionY = 0.0f;
     GLFWwindow* window;
     glfwSetErrorCallback(error_callback);
     if (!glfwInit())
@@ -48,12 +52,19 @@ int main(void)
 
         //another item :D
         position += MyPinko.getMove();
+        positionY -= physic.getGravityFactor();
         glPushMatrix();
-        if(physic.checkExitToBorder(position, 0.0f) == true)
+        if (physic.checkExitToBorderX(position) == true)
         {
             position -= MyPinko.getMove();
         }
-        glTranslatef((float) position, 0.f, 0.f);
+
+        if (physic.checkExitToBorderY(positionY) == true)
+        {
+            positionY += physic.getGravityFactor();
+        }
+
+        glTranslatef((float) position, positionY, 0.f);
         MyPinko.generatePinko();
         glPopMatrix();
         MyPinko.cleanMove();

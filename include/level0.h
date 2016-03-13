@@ -1,10 +1,15 @@
 #ifndef LEVEL0_H
 #define LEVEL0_H
+
 #include <GLFW/glfw3.h>
+
+#include <set>
 
 class level0
 {
 public:
+    std::set<double> levelX;
+    std::set<double> levelY;
     level0();
     virtual ~level0();
     void generateworld();
@@ -16,15 +21,15 @@ level0::level0()
 
 void level0::generateworld()
 {
-    glPushMatrix();
-    glRotatef((float) glfwGetTime() * 100.0f, 0.f, 0.f, 1.f);
-    glBegin(GL_TRIANGLES);
-    glColor3f(0.0f, 0.0f, 1.0f); // Blue
-    glVertex2f(0.1f, -0.6f);
-    glVertex2f(0.7f, -0.6f);
-    glVertex2f(0.4f, -0.1f);
-    glEnd();
-    glPopMatrix();
+//    glPushMatrix();
+//    glRotatef((float) glfwGetTime() * 100.0f, 0.f, 0.f, 1.f);
+//    glBegin(GL_TRIANGLES);
+//    glColor3f(0.0f, 0.0f, 1.0f); // Blue
+//    glVertex2f(0.1f, -0.6f);
+//    glVertex2f(0.7f, -0.6f);
+//    glVertex2f(0.4f, -0.1f);
+//    glEnd();
+//    glPopMatrix();
 
     glBegin(GL_QUADS);
     glColor3f(0.37, 0.30, 0.22);

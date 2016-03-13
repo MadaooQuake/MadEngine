@@ -66,8 +66,6 @@ double pinko::getMove()
     return move;
 }
 
-
-
 pinko::~pinko()
 {
     //dtor
