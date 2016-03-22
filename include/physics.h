@@ -46,9 +46,6 @@ double physics::getGravityFactor()
     return gravityFactor;
 }
 
-
-
-
 physics::~physics()
 {
 }
