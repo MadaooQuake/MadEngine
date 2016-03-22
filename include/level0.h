@@ -12,6 +12,8 @@ public:
     virtual ~level0();
     void generateworld();
     void createStaticObjects();
+    std::vector<double> getObjectFromX();
+    std::vector<double> getObjectFromY();
 private:
     std::vector<double> staticElementsX;
     std::vector<double> staticElementsY;
@@ -91,6 +93,14 @@ void level0::generateworld()
     glVertex2f(1.0, -1.0);
     glVertex2f(-0.5, -1.0);
     glEnd();
+}
+
+std::vector<double> level0::getObjectFromX() {
+    return staticElementsX;
+}
+
+std::vector<double> level0::getObjectFromY() {
+    return staticElementsY;
 }
 
 level0::~level0()
