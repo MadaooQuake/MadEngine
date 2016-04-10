@@ -34,6 +34,9 @@ int main(void)
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
     glfwSetKeyCallback(window, key_callback);
+    // move in new class
+    level.createStaticObjects();
+    physic.putStaticElements(level.getObjectFromX(), level.getObjectFromY());
     while (!glfwWindowShouldClose(window))
     {
         float ratio;
@@ -51,18 +54,22 @@ int main(void)
         level.generateworld();
 
         //another item :D
+
+        glPushMatrix();
         position += MyPinko.getMove();
         positionY -= physic.getGravityFactor();
-        glPushMatrix();
-        if (physic.checkExitToBorderX(position) == true)
+        if (physic.checkExitToBorderX(position) == true
+            || physic.checkStaticObjectsOnPositionX(position, positionY, level.getStartPositionX()) == true)
         {
             position -= MyPinko.getMove();
         }
 
-        if (physic.checkExitToBorderY(positionY) == true)
+        if (physic.checkExitToBorderY(positionY) == true
+            || physic.checkStaticObjectsOnPositionY(position, positionY, level.getStartPositionX(), level.getStartPositionY()) == true)
         {
             positionY += physic.getGravityFactor();
         }
+
 
         glTranslatef((float) position, positionY, 0.f);
         MyPinko.generatePinko();

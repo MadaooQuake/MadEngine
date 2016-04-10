@@ -1,5 +1,7 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
+#include <algorithm>
+#include <math.h>
 
 class physics
 {
@@ -11,7 +13,9 @@ public:
     virtual ~physics();
     bool checkExitToBorderX(double positionX);
     bool checkExitToBorderY(double positionY);
-    bool checkCollision(std::vector<double> tmpElementsX, std::vector<double> tmpElementsY);
+    void putStaticElements(std::vector<double> tmpElementsX, std::vector<double> tmpElementsY);
+    bool checkStaticObjectsOnPositionX(double positionX, double positionY, double startPositionX);
+    bool checkStaticObjectsOnPositionY(double positionX, double positionY, double startPositionX, double startPositionY);
     double getGravityFactor();
 private:
 
@@ -24,7 +28,6 @@ physics::physics()
 bool physics::checkExitToBorderX(double positionX)
 {
     bool result = false;
-
     if (positionX > 1.2 || positionX < -0.95)
     {
         result = true;
@@ -44,9 +47,29 @@ bool physics::checkExitToBorderY(double positionY)
     return result;
 }
 
-bool physics::checkCollision(std::vector<double> tmpElementsX, std::vector<double> tmpElementsY)
+void physics::putStaticElements(std::vector<double> tmpElementsX, std::vector<double> tmpElementsY)
 {
+    elementsX = tmpElementsX;
+    elementsY = tmpElementsY;
+}
 
+
+bool physics::checkStaticObjectsOnPositionX(double positionX, double positionY, double startPositionX)
+{
+    double positionPinkoInX = (startPositionX + positionX);
+    std::cout << "X" << positionPinkoInX << std::endl;
+    return false;
+}
+
+bool physics::checkStaticObjectsOnPositionY(double positionX, double positionY, double startPositionX, double startPositionY)
+{
+    bool result = false;
+    double positionPinkoInY = (startPositionY - positionY) - gravityFactor;
+    std::cout << "Y" << positionPinkoInY << std::endl;
+    if(std::find(elementsY.begin(), elementsY.end(), positionPinkoInY) != elementsY.end()) {
+        result = true;
+    }
+    return result;
 }
 
 double physics::getGravityFactor()

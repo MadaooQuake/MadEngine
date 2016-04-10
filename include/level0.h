@@ -14,9 +14,13 @@ public:
     void createStaticObjects();
     std::vector<double> getObjectFromX();
     std::vector<double> getObjectFromY();
+    double getStartPositionX();
+    double getStartPositionY();
 private:
     std::vector<double> staticElementsX;
     std::vector<double> staticElementsY;
+    double startPointX;
+    double startPointY;
 };
 
 level0::level0()
@@ -24,60 +28,61 @@ level0::level0()
 }
 
 void level0::createStaticObjects() {
-    staticElementsX.push_back (-0.5);
-    staticElementsX.push_back (0.55);
-    staticElementsX.push_back (0.55);
-    staticElementsX.push_back (-0.5);
+    startPointX = -0.5f;
+    staticElementsX.push_back (-0.5f);
+    staticElementsX.push_back (0.55f);
+    staticElementsX.push_back (0.55f);
+    staticElementsX.push_back (-0.5f);
 
-    staticElementsX.push_back (-0.55);
-    staticElementsX.push_back (-0.50);
-    staticElementsX.push_back (-0.50);
-    staticElementsX.push_back (-0.55);
+    staticElementsX.push_back (-0.55f);
+    staticElementsX.push_back (-0.50f);
+    staticElementsX.push_back (-0.50f);
+    staticElementsX.push_back (-0.55f);
 
-    staticElementsX.push_back (-0.5);
-    staticElementsX.push_back (0.75);
-    staticElementsX.push_back (0.75);
-    staticElementsX.push_back (-0.5);
+    staticElementsX.push_back (-0.5f);
+    staticElementsX.push_back (0.75f);
+    staticElementsX.push_back (0.75f);
+    staticElementsX.push_back (-0.5f);
 
-    staticElementsX.push_back (-0.2);
-    staticElementsX.push_back (1.0);
-    staticElementsX.push_back (1.0);
-    staticElementsX.push_back (-0.2);
+    staticElementsX.push_back (-0.2f);
+    staticElementsX.push_back (1.0f);
+    staticElementsX.push_back (1.0f);
+    staticElementsX.push_back (-0.2f);
 
-    staticElementsX.push_back (-0.5);
-    staticElementsX.push_back (1.0);
-    staticElementsX.push_back (1.0);
-    staticElementsX.push_back (-0.5);
+    staticElementsX.push_back (-0.5f);
+    staticElementsX.push_back (1.0f);
+    staticElementsX.push_back (1.0f);
+    staticElementsX.push_back (-0.5f);
 
-    staticElementsY.push_back (0.6);
-    staticElementsY.push_back (0.6);
-    staticElementsY.push_back (0.55);
-    staticElementsY.push_back (0.55);
+    startPointY = 0.6f;
+    staticElementsY.push_back (0.6f);
+    staticElementsY.push_back (0.6f);
+    staticElementsY.push_back (0.55f);
+    staticElementsY.push_back (0.55f);
 
-    staticElementsY.push_back (0.95);
-    staticElementsY.push_back (0.95);
-    staticElementsY.push_back (-1.0);
-    staticElementsY.push_back (-1.0);
+    staticElementsY.push_back (0.95f);
+    staticElementsY.push_back (0.95f);
+    staticElementsY.push_back (-1.0f);
+    staticElementsY.push_back (-1.0f);
 
-    staticElementsY.push_back (0.3);
-    staticElementsY.push_back (0.3);
-    staticElementsY.push_back (0.25);
-    staticElementsY.push_back (0.25);
+    staticElementsY.push_back (0.3f);
+    staticElementsY.push_back (0.3f);
+    staticElementsY.push_back (0.25f);
+    staticElementsY.push_back (0.25f);
 
-    staticElementsY.push_back (0.00);
-    staticElementsY.push_back (0.00);
-    staticElementsY.push_back (-0.05);
-    staticElementsY.push_back (-0.05);
+    staticElementsY.push_back (0.00f);
+    staticElementsY.push_back (0.00f);
+    staticElementsY.push_back (-0.05f);
+    staticElementsY.push_back (-0.05f);
 
-    staticElementsY.push_back (-0.4);
-    staticElementsY.push_back (-0.4);
-    staticElementsY.push_back (-0.45);
-    staticElementsY.push_back (-0.45);
+    staticElementsY.push_back (-0.4f);
+    staticElementsY.push_back (-0.4f);
+    staticElementsY.push_back (-0.45f);
+    staticElementsY.push_back (-0.45f);
 }
 
 void level0::generateworld()
 {
-    createStaticObjects();
     glBegin(GL_QUADS);
     glColor3f(0.37, 0.30, 0.22);
     // read vector
@@ -102,6 +107,16 @@ std::vector<double> level0::getObjectFromX() {
 std::vector<double> level0::getObjectFromY() {
     return staticElementsY;
 }
+
+double level0::getStartPositionX() {
+    return startPointX;
+}
+
+double level0::getStartPositionY() {
+    return startPointY;
+}
+
+
 
 level0::~level0()
 {
