@@ -16,6 +16,7 @@ public:
     void putStaticElements(std::vector<double> tmpElementsX, std::vector<double> tmpElementsY);
     bool checkStaticObjectsOnPositionX(double positionX, double positionY, double startPositionX);
     bool checkStaticObjectsOnPositionY(double positionX, double positionY, double startPositionX, double startPositionY);
+    bool findInX(double positionX);
     double getGravityFactor();
 private:
 
@@ -57,7 +58,6 @@ void physics::putStaticElements(std::vector<double> tmpElementsX, std::vector<do
 bool physics::checkStaticObjectsOnPositionX(double positionX, double positionY, double startPositionX)
 {
     double positionPinkoInX = (startPositionX + positionX);
-    std::cout << "X" << positionPinkoInX << std::endl;
     return false;
 }
 
@@ -65,9 +65,27 @@ bool physics::checkStaticObjectsOnPositionY(double positionX, double positionY, 
 {
     bool result = false;
     double positionPinkoInY = (startPositionY - positionY) - gravityFactor;
-    std::cout << "Y" << positionPinkoInY << std::endl;
-    if(std::find(elementsY.begin(), elementsY.end(), positionPinkoInY) != elementsY.end()) {
+
+    if(std::find(elementsY.begin(), elementsY.end(), positionPinkoInY) != elementsY.end()
+       && findInX(startPositionX + positionX) == true) {
         result = true;
+    }
+    return result;
+}
+
+bool physics::findInX(double positionX)
+{
+
+    bool result = false;
+    for (int i = 0; i < elementsX.size();)
+    {
+        std::cout << result << std::endl;
+        if (elementsX[i] >= positionX || positionX <= elementsX[i+=1])
+        {
+            result = true;
+            break;
+        }
+        i +=2;
     }
     return result;
 }
