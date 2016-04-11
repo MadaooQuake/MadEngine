@@ -79,8 +79,7 @@ bool physics::findInX(double positionX)
     bool result = false;
     for (int i = 0; i < elementsX.size();)
     {
-        std::cout << result << std::endl;
-        if (elementsX[i] >= positionX || positionX <= elementsX[i+=1])
+        if (positionX >= elementsX[i] && positionX <= elementsX[i=+1])
         {
             result = true;
             break;

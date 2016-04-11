@@ -2,7 +2,7 @@
 #define LEVEL0_H
 
 #include <GLFW/glfw3.h>
-
+#include <map>
 #include <vector>
 
 class level0
@@ -17,6 +17,7 @@ public:
     double getStartPositionX();
     double getStartPositionY();
 private:
+    std::map<double, std::vector<double> > staticObjects;
     std::vector<double> staticElementsX;
     std::vector<double> staticElementsY;
     double startPointX;
@@ -29,56 +30,102 @@ level0::level0()
 
 void level0::createStaticObjects() {
     startPointX = -0.5f;
-    staticElementsX.push_back (-0.5f);
-    staticElementsX.push_back (0.55f);
-    staticElementsX.push_back (0.55f);
-    staticElementsX.push_back (-0.5f);
-
-    staticElementsX.push_back (-0.55f);
-    staticElementsX.push_back (-0.50f);
-    staticElementsX.push_back (-0.50f);
-    staticElementsX.push_back (-0.55f);
-
-    staticElementsX.push_back (-0.5f);
-    staticElementsX.push_back (0.75f);
-    staticElementsX.push_back (0.75f);
-    staticElementsX.push_back (-0.5f);
-
-    staticElementsX.push_back (-0.2f);
-    staticElementsX.push_back (1.0f);
-    staticElementsX.push_back (1.0f);
-    staticElementsX.push_back (-0.2f);
-
-    staticElementsX.push_back (-0.5f);
-    staticElementsX.push_back (1.0f);
-    staticElementsX.push_back (1.0f);
-    staticElementsX.push_back (-0.5f);
-
     startPointY = 0.6f;
-    staticElementsY.push_back (0.6f);
-    staticElementsY.push_back (0.6f);
-    staticElementsY.push_back (0.55f);
-    staticElementsY.push_back (0.55f);
+    staticElementsX.clear();
+    staticElementsX.push_back (-0.5f);
+    staticElementsX.push_back (0.55f);
+    staticObjects[0.6f] = staticElementsX;
+    staticElementsX.clear();
+    staticElementsX.push_back (0.55f);
+    staticElementsX.push_back (-0.5f);
+    staticObjects[0.55f] = staticElementsX;
 
-    staticElementsY.push_back (0.95f);
-    staticElementsY.push_back (0.95f);
-    staticElementsY.push_back (-1.0f);
-    staticElementsY.push_back (-1.0f);
+    staticElementsX.clear();
+    staticElementsX.push_back (0.55f);
+    staticElementsX.push_back (-0.50f);
+    staticObjects[0.95f] = staticElementsX;
 
-    staticElementsY.push_back (0.3f);
-    staticElementsY.push_back (0.3f);
-    staticElementsY.push_back (0.25f);
-    staticElementsY.push_back (0.25f);
+    staticElementsX.clear();
+    staticElementsX.push_back (0.55f);
+    staticElementsX.push_back (-0.50f);
+    staticObjects[-1.0f] = staticElementsX;
 
-    staticElementsY.push_back (0.00f);
-    staticElementsY.push_back (0.00f);
-    staticElementsY.push_back (-0.05f);
-    staticElementsY.push_back (-0.05f);
+    staticElementsX.clear();
+    staticElementsX.push_back (-0.5f);
+    staticElementsX.push_back (0.75f);
+    staticObjects[0.3f] = staticElementsX;
 
-    staticElementsY.push_back (-0.4f);
-    staticElementsY.push_back (-0.4f);
-    staticElementsY.push_back (-0.45f);
-    staticElementsY.push_back (-0.45f);
+    staticElementsX.clear();
+    staticElementsX.push_back (-0.5f);
+    staticElementsX.push_back (0.75f);
+    staticObjects[0.25f] = staticElementsX;
+
+    staticElementsX.clear();
+    staticElementsX.push_back (-0.2f);
+    staticElementsX.push_back (1.0f);
+    staticObjects[0.00f] = staticElementsX;
+
+    staticElementsX.clear();
+    staticElementsX.push_back (-0.2f);
+    staticElementsX.push_back (1.0f);
+    staticObjects[-0.05f] = staticElementsX;
+
+    staticElementsX.clear();
+    staticElementsX.push_back (-0.5f);
+    staticElementsX.push_back (1.0f);
+    staticObjects[-0.4f] = staticElementsX;
+
+    staticElementsX.clear();
+    staticElementsX.push_back (-0.5f);
+    staticElementsX.push_back (1.0f);
+    staticObjects[-0.45f] = staticElementsX;
+
+
+
+//    staticElementsX.push_back (-0.55f);
+//    staticElementsX.push_back (-0.50f);
+//    staticElementsX.push_back (-0.50f);
+//    staticElementsX.push_back (-0.55f);
+
+//    staticElementsX.push_back (-0.5f);
+//    staticElementsX.push_back (0.75f);
+//    staticElementsX.push_back (0.75f);
+//    staticElementsX.push_back (-0.5f);
+
+//    staticElementsX.push_back (-0.2f);
+//    staticElementsX.push_back (1.0f);
+//    staticElementsX.push_back (1.0f);
+//    staticElementsX.push_back (-0.2f);
+
+//    staticElementsX.push_back (-0.5f);
+//    staticElementsX.push_back (1.0f);
+//    staticElementsX.push_back (1.0f);
+//    staticElementsX.push_back (-0.5f);
+
+//    staticElementsY.push_back (0.6f);
+//    staticElementsY.push_back (0.6f);
+//    staticElementsY.push_back (0.55f);
+//    staticElementsY.push_back (0.55f);
+
+//    staticElementsY.push_back (0.95f);
+//    staticElementsY.push_back (0.95f);
+//    staticElementsY.push_back (-1.0f);
+//    staticElementsY.push_back (-1.0f);
+
+//    staticElementsY.push_back (0.3f);
+//    staticElementsY.push_back (0.3f);
+//    staticElementsY.push_back (0.25f);
+//    staticElementsY.push_back (0.25f);
+
+//    staticElementsY.push_back (0.00f);
+//    staticElementsY.push_back (0.00f);
+//    staticElementsY.push_back (-0.05f);
+//    staticElementsY.push_back (-0.05f);
+
+//    staticElementsY.push_back (-0.4f);
+//    staticElementsY.push_back (-0.4f);
+//    staticElementsY.push_back (-0.45f);
+//    staticElementsY.push_back (-0.45f);
 }
 
 void level0::generateworld()
@@ -86,10 +133,14 @@ void level0::generateworld()
     glBegin(GL_QUADS);
     glColor3f(0.37, 0.30, 0.22);
     // read vector
-    for (unsigned i=0; i<staticElementsX.size(); i++)
-    {
-        glVertex2f(staticElementsX.at(i), staticElementsY.at(i));
-    }
+//    for (unsigned i=0; i<staticElementsX.size(); i++)
+//    {
+//        glVertex2f(staticElementsX.at(i), staticElementsY.at(i));
+//    }
+
+
+
+
 
     glColor3f(0.75, 0.68, 0.59);
 
