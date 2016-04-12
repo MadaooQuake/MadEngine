@@ -31,7 +31,7 @@ level0::level0()
 void level0::createStaticObjects() {
     startPointX = -0.5f;
     startPointY = 0.6f;
-    staticElementsX.clear();
+
     staticElementsX.push_back (-0.5f);
     staticElementsX.push_back (0.55f);
     staticObjects[0.6f] = staticElementsX;
@@ -41,106 +41,63 @@ void level0::createStaticObjects() {
     staticObjects[0.55f] = staticElementsX;
 
     staticElementsX.clear();
-    staticElementsX.push_back (0.55f);
+    staticElementsX.push_back (-0.55f);
     staticElementsX.push_back (-0.50f);
     staticObjects[0.95f] = staticElementsX;
-
     staticElementsX.clear();
-    staticElementsX.push_back (0.55f);
     staticElementsX.push_back (-0.50f);
+    staticElementsX.push_back (-0.55f);
     staticObjects[-1.0f] = staticElementsX;
 
     staticElementsX.clear();
     staticElementsX.push_back (-0.5f);
     staticElementsX.push_back (0.75f);
     staticObjects[0.3f] = staticElementsX;
-
     staticElementsX.clear();
-    staticElementsX.push_back (-0.5f);
     staticElementsX.push_back (0.75f);
+    staticElementsX.push_back (-0.5f);
     staticObjects[0.25f] = staticElementsX;
 
     staticElementsX.clear();
     staticElementsX.push_back (-0.2f);
     staticElementsX.push_back (1.0f);
-    staticObjects[0.00f] = staticElementsX;
-
+    staticObjects[0.0f] = staticElementsX;
     staticElementsX.clear();
-    staticElementsX.push_back (-0.2f);
     staticElementsX.push_back (1.0f);
+    staticElementsX.push_back (-0.2f);
     staticObjects[-0.05f] = staticElementsX;
 
     staticElementsX.clear();
     staticElementsX.push_back (-0.5f);
     staticElementsX.push_back (1.0f);
     staticObjects[-0.4f] = staticElementsX;
-
     staticElementsX.clear();
-    staticElementsX.push_back (-0.5f);
     staticElementsX.push_back (1.0f);
+    staticElementsX.push_back (-0.5f);
     staticObjects[-0.45f] = staticElementsX;
-
-
-
-//    staticElementsX.push_back (-0.55f);
-//    staticElementsX.push_back (-0.50f);
-//    staticElementsX.push_back (-0.50f);
-//    staticElementsX.push_back (-0.55f);
-
-//    staticElementsX.push_back (-0.5f);
-//    staticElementsX.push_back (0.75f);
-//    staticElementsX.push_back (0.75f);
-//    staticElementsX.push_back (-0.5f);
-
-//    staticElementsX.push_back (-0.2f);
-//    staticElementsX.push_back (1.0f);
-//    staticElementsX.push_back (1.0f);
-//    staticElementsX.push_back (-0.2f);
-
-//    staticElementsX.push_back (-0.5f);
-//    staticElementsX.push_back (1.0f);
-//    staticElementsX.push_back (1.0f);
-//    staticElementsX.push_back (-0.5f);
-
-//    staticElementsY.push_back (0.6f);
-//    staticElementsY.push_back (0.6f);
-//    staticElementsY.push_back (0.55f);
-//    staticElementsY.push_back (0.55f);
-
-//    staticElementsY.push_back (0.95f);
-//    staticElementsY.push_back (0.95f);
-//    staticElementsY.push_back (-1.0f);
-//    staticElementsY.push_back (-1.0f);
-
-//    staticElementsY.push_back (0.3f);
-//    staticElementsY.push_back (0.3f);
-//    staticElementsY.push_back (0.25f);
-//    staticElementsY.push_back (0.25f);
-
-//    staticElementsY.push_back (0.00f);
-//    staticElementsY.push_back (0.00f);
-//    staticElementsY.push_back (-0.05f);
-//    staticElementsY.push_back (-0.05f);
-
-//    staticElementsY.push_back (-0.4f);
-//    staticElementsY.push_back (-0.4f);
-//    staticElementsY.push_back (-0.45f);
-//    staticElementsY.push_back (-0.45f);
 }
 
 void level0::generateworld()
 {
     glBegin(GL_QUADS);
     glColor3f(0.37, 0.30, 0.22);
-    // read vector
-//    for (unsigned i=0; i<staticElementsX.size(); i++)
-//    {
-//        glVertex2f(staticElementsX.at(i), staticElementsY.at(i));
-//    }
+    for( std::map<double, std::vector<double> >::iterator it = staticObjects.begin();
+    it != staticObjects.end(); ++it)
+    {
+        //draw time ;)
+        std::vector<double> xValue = (*it).second;
+        double yValue = (*it).first;
+        std::cout << yValue << " : " << xValue[0] << xValue[1] << std::endl;
+        glVertex2f(xValue[0], yValue);
+        glVertex2f(xValue[1], yValue);
+        it++;
+        xValue.clear();
+        yValue = (*it).first;
+        xValue = (*it).second;
+        glVertex2f(xValue[0], yValue);
+        glVertex2f(xValue[1], yValue);
 
-
-
-
+    }
 
     glColor3f(0.75, 0.68, 0.59);
 

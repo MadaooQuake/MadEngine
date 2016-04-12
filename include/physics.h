@@ -77,15 +77,15 @@ bool physics::findInX(double positionX)
 {
 
     bool result = false;
-    for (int i = 0; i < elementsX.size();)
-    {
-        if (positionX >= elementsX[i] && positionX <= elementsX[i=+1])
-        {
-            result = true;
-            break;
-        }
-        i +=2;
-    }
+//    for (int i = 0; i < elementsX.size();)
+//    {
+//        if (positionX >= elementsX[i] && positionX <= elementsX[i=+1])
+//        {
+//            result = true;
+//            break;
+//        }
+//        i +=2;
+//    }
     return result;
 }
 
