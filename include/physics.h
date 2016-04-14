@@ -15,7 +15,7 @@ public:
     void putStaticElements(std::map<double, std::vector<double> > staticObjects_);
     bool checkStaticObjectsOnPositionX(double positionX, double positionY, double startPositionX);
     bool checkStaticObjectsOnPositionY(double positionX, double positionY, double startPositionX, double startPositionY);
-    bool findInX(double positionX);
+    bool findInX(double positionX, std::vector<double> elementsX);
     double getGravityFactor();
 private:
     std::map<double, std::vector<double> > staticObjects;
@@ -63,14 +63,21 @@ bool physics::checkStaticObjectsOnPositionY(double positionX, double positionY, 
 {
     bool result = false;
     double positionPinkoInY = (startPositionY - positionY) - gravityFactor;
-
+    if (staticObjects.find(positionPinkoInY) != staticObjects.end())
+    {
+        result = findInX(startPositionX + positionX, staticObjects[positionPinkoInY]);
+    }
     return result;
 }
 
-bool physics::findInX(double positionX)
+bool physics::findInX(double positionX, std::vector<double> elementsX)
 {
-
     bool result = false;
+
+    if(elementsX[0] <= positionX && elementsX[1] >= positionX)
+    {
+        result = true;
+    }
 
     return result;
 }
