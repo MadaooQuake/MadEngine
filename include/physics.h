@@ -2,24 +2,23 @@
 #define PHYSICS_H
 #include <algorithm>
 #include <math.h>
+#include <map>
 
 class physics
 {
 public:
-    std::vector<double> elementsX;
-    std::vector<double> elementsY;
     double gravityFactor = 0.012f;
     physics();
     virtual ~physics();
     bool checkExitToBorderX(double positionX);
     bool checkExitToBorderY(double positionY);
-    void putStaticElements(std::vector<double> tmpElementsX, std::vector<double> tmpElementsY);
+    void putStaticElements(std::map<double, std::vector<double> > staticObjects_);
     bool checkStaticObjectsOnPositionX(double positionX, double positionY, double startPositionX);
     bool checkStaticObjectsOnPositionY(double positionX, double positionY, double startPositionX, double startPositionY);
     bool findInX(double positionX);
     double getGravityFactor();
 private:
-
+    std::map<double, std::vector<double> > staticObjects;
 };
 
 physics::physics()
@@ -48,10 +47,9 @@ bool physics::checkExitToBorderY(double positionY)
     return result;
 }
 
-void physics::putStaticElements(std::vector<double> tmpElementsX, std::vector<double> tmpElementsY)
+void physics::putStaticElements(std::map<double, std::vector<double> > staticObjects_)
 {
-    elementsX = tmpElementsX;
-    elementsY = tmpElementsY;
+    staticObjects = staticObjects_;
 }
 
 
@@ -66,10 +64,6 @@ bool physics::checkStaticObjectsOnPositionY(double positionX, double positionY, 
     bool result = false;
     double positionPinkoInY = (startPositionY - positionY) - gravityFactor;
 
-    if(std::find(elementsY.begin(), elementsY.end(), positionPinkoInY) != elementsY.end()
-       && findInX(startPositionX + positionX) == true) {
-        result = true;
-    }
     return result;
 }
 
@@ -77,15 +71,7 @@ bool physics::findInX(double positionX)
 {
 
     bool result = false;
-//    for (int i = 0; i < elementsX.size();)
-//    {
-//        if (positionX >= elementsX[i] && positionX <= elementsX[i=+1])
-//        {
-//            result = true;
-//            break;
-//        }
-//        i +=2;
-//    }
+
     return result;
 }
 

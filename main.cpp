@@ -36,7 +36,7 @@ int main(void)
     glfwSetKeyCallback(window, key_callback);
     // move in new class
     level.createStaticObjects();
-    physic.putStaticElements(level.getObjectFromX(), level.getObjectFromY());
+    physic.putStaticElements(level.getStaticObjects());
     while (!glfwWindowShouldClose(window))
     {
         float ratio;
@@ -51,10 +51,9 @@ int main(void)
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
-        level.generateworld();
+        level.generateWorld();
 
         //another item :D
-
         glPushMatrix();
         position += MyPinko.getMove();
         positionY -= physic.getGravityFactor();
@@ -78,7 +77,6 @@ int main(void)
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-        break;
     }
     glfwDestroyWindow(window);
     glfwTerminate();

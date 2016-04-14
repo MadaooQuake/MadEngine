@@ -10,16 +10,16 @@ class level0
 public:
     level0();
     virtual ~level0();
-    void generateworld();
+    void generateWorld();
     void createStaticObjects();
     std::vector<double> getObjectFromX();
     std::vector<double> getObjectFromY();
     double getStartPositionX();
     double getStartPositionY();
+    std::map<double, std::vector<double> > getStaticObjects();
 private:
     std::map<double, std::vector<double> > staticObjects;
     std::vector<double> staticElementsX;
-    std::vector<double> staticElementsY;
     double startPointX;
     double startPointY;
 };
@@ -28,6 +28,7 @@ level0::level0()
 {
 }
 
+// get from db to collision
 void level0::createStaticObjects() {
     startPointX = -0.5f;
     startPointY = 0.6f;
@@ -42,10 +43,10 @@ void level0::createStaticObjects() {
 
     staticElementsX.clear();
     staticElementsX.push_back (-0.55f);
-    staticElementsX.push_back (-0.50f);
+    staticElementsX.push_back (-0.5f);
     staticObjects[0.95f] = staticElementsX;
     staticElementsX.clear();
-    staticElementsX.push_back (-0.50f);
+    staticElementsX.push_back (-0.5f);
     staticElementsX.push_back (-0.55f);
     staticObjects[-1.0f] = staticElementsX;
 
@@ -77,27 +78,35 @@ void level0::createStaticObjects() {
     staticObjects[-0.45f] = staticElementsX;
 }
 
-void level0::generateworld()
+void level0::generateWorld()
 {
+    // get from db
     glBegin(GL_QUADS);
     glColor3f(0.37, 0.30, 0.22);
-    for( std::map<double, std::vector<double> >::iterator it = staticObjects.begin();
-    it != staticObjects.end(); ++it)
-    {
-        //draw time ;)
-        std::vector<double> xValue = (*it).second;
-        double yValue = (*it).first;
-        std::cout << yValue << " : " << xValue[0] << xValue[1] << std::endl;
-        glVertex2f(xValue[0], yValue);
-        glVertex2f(xValue[1], yValue);
-        it++;
-        xValue.clear();
-        yValue = (*it).first;
-        xValue = (*it).second;
-        glVertex2f(xValue[0], yValue);
-        glVertex2f(xValue[1], yValue);
+    glVertex2f(-0.5, 0.6);
+    glVertex2f(0.55, 0.6);
+    glVertex2f(0.55, 0.55);
+    glVertex2f(-0.5, 0.55);
 
-    }
+    glVertex2f(-0.55, 0.95);
+    glVertex2f(-0.50, 0.95);
+    glVertex2f(-0.50, -1.0);
+    glVertex2f(-0.55, -1.0);
+
+    glVertex2f(-0.5, 0.3);
+    glVertex2f(0.75, 0.3);
+    glVertex2f(0.75, 0.25);
+    glVertex2f(-0.5, 0.25);
+
+    glVertex2f(-0.2, 0.00);
+    glVertex2f(1.0, 0.00);
+    glVertex2f(1.0, -0.05);
+    glVertex2f(-0.2, -0.05);
+
+    glVertex2f(-0.5, -0.4);
+    glVertex2f(1.0, -0.4);
+    glVertex2f(1.0, -0.45);
+    glVertex2f(-0.5, -0.45);
 
     glColor3f(0.75, 0.68, 0.59);
 
@@ -108,20 +117,16 @@ void level0::generateworld()
     glEnd();
 }
 
-std::vector<double> level0::getObjectFromX() {
-    return staticElementsX;
-}
-
-std::vector<double> level0::getObjectFromY() {
-    return staticElementsY;
-}
-
 double level0::getStartPositionX() {
     return startPointX;
 }
 
 double level0::getStartPositionY() {
     return startPointY;
+}
+
+std::map<double, std::vector<double> > level0::getStaticObjects() {
+    return staticObjects;
 }
 
 
