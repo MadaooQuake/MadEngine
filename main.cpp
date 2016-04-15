@@ -62,12 +62,15 @@ int main(void)
         {
             position -= MyPinko.getMove();
         }
-
-        if (physic.checkExitToBorderY(positionY) == true
-            || physic.checkStaticObjectsOnPositionY(position, positionY, level.getStartPositionX(), level.getStartPositionY()) == true)
+        if (physic.checkExitToBorderY(positionY) == true)
         {
             positionY += physic.getGravityFactor();
         }
+        if  (physic.checkStaticObjectsOnPositionY(position, positionY, level.getStartPositionX(), level.getStartPositionY()) == true) {
+            positionY += physic.getGravityFactor();
+        }
+
+
 
 
         glTranslatef((float) position, positionY, 0.f);
