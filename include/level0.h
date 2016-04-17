@@ -30,52 +30,52 @@ level0::level0()
 
 // get from db to collision
 void level0::createStaticObjects() {
-    startPointX = -0.5f;
-    startPointY = 0.6f;
+    startPointX = -0.5;
+    startPointY = 0.6;
 
-    staticElementsX.push_back (-0.5f);
-    staticElementsX.push_back (0.55f);
-    staticObjects[0.6f] = staticElementsX;
+    staticElementsX.push_back (-0.5);
+    staticElementsX.push_back (0.55);
+    staticObjects[0.6] = staticElementsX;
     staticElementsX.clear();
-    staticElementsX.push_back (0.55f);
-    staticElementsX.push_back (-0.5f);
-    staticObjects[0.55f] = staticElementsX;
-
-    staticElementsX.clear();
-    staticElementsX.push_back (-0.55f);
-    staticElementsX.push_back (-0.5f);
-    staticObjects[0.95f] = staticElementsX;
-    staticElementsX.clear();
-    staticElementsX.push_back (-0.5f);
-    staticElementsX.push_back (-0.55f);
-    staticObjects[-1.0f] = staticElementsX;
+    staticElementsX.push_back (0.55);
+    staticElementsX.push_back (-0.5);
+    staticObjects[0.55] = staticElementsX;
 
     staticElementsX.clear();
-    staticElementsX.push_back (-0.5f);
-    staticElementsX.push_back (0.75f);
-    staticObjects[0.3f] = staticElementsX;
+    staticElementsX.push_back (-0.55);
+    staticElementsX.push_back (-0.5);
+    staticObjects[0.95] = staticElementsX;
     staticElementsX.clear();
-    staticElementsX.push_back (0.75f);
-    staticElementsX.push_back (-0.5f);
-    staticObjects[0.25f] = staticElementsX;
+    staticElementsX.push_back (-0.5);
+    staticElementsX.push_back (-0.55);
+    staticObjects[-1.0] = staticElementsX;
 
     staticElementsX.clear();
-    staticElementsX.push_back (-0.2f);
-    staticElementsX.push_back (1.0f);
-    staticObjects[0.0f] = staticElementsX;
+    staticElementsX.push_back (-0.5);
+    staticElementsX.push_back (0.75);
+    staticObjects[0.3] = staticElementsX;
     staticElementsX.clear();
-    staticElementsX.push_back (1.0f);
-    staticElementsX.push_back (-0.2f);
-    staticObjects[-0.05f] = staticElementsX;
+    staticElementsX.push_back (0.75);
+    staticElementsX.push_back (-0.5);
+    staticObjects[0.25] = staticElementsX;
 
     staticElementsX.clear();
-    staticElementsX.push_back (-0.5f);
-    staticElementsX.push_back (1.0f);
-    staticObjects[-0.4f] = staticElementsX;
+    staticElementsX.push_back (-0.2);
+    staticElementsX.push_back (1.0);
+    staticObjects[0.0] = staticElementsX;
     staticElementsX.clear();
-    staticElementsX.push_back (1.0f);
-    staticElementsX.push_back (-0.5f);
-    staticObjects[-0.45f] = staticElementsX;
+    staticElementsX.push_back (1.0);
+    staticElementsX.push_back (-0.2);
+    staticObjects[-0.05] = staticElementsX;
+
+    staticElementsX.clear();
+    staticElementsX.push_back (-0.5);
+    staticElementsX.push_back (1.0);
+    staticObjects[-0.4] = staticElementsX;
+    staticElementsX.clear();
+    staticElementsX.push_back (1.0);
+    staticElementsX.push_back (-0.5);
+    staticObjects[-0.45] = staticElementsX;
 }
 
 void level0::generateWorld()

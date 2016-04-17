@@ -1,6 +1,7 @@
 #ifndef PINKO_H
 #define PINKO_H
 #include <GLFW/glfw3.h>
+#include <vector>
 
 class pinko
 {
@@ -12,8 +13,10 @@ class pinko
         void goBack();
         void cleanMove();
         double getMove();
+        std::vector<double> getPinkoPosition();
         virtual ~pinko();
     protected:
+        std::vector<double> pinkoPosition;
     private:
 };
 
@@ -64,6 +67,13 @@ void pinko::cleanMove()
 double pinko::getMove()
 {
     return move;
+}
+
+std::vector<double> pinko::getPinkoPosition()
+{
+    pinkoPosition.push_back(-0.36);
+    pinkoPosition.push_back(-0.26);
+    return pinkoPosition;
 }
 
 pinko::~pinko()

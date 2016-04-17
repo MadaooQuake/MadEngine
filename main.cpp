@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <set>
+#include <vector>
 
 #include "include/pinko.h"
 #include "include/level0.h"
@@ -37,6 +38,7 @@ int main(void)
     // move in new class
     level.createStaticObjects();
     physic.putStaticElements(level.getStaticObjects());
+    std::vector<double> pinkoPosition = MyPinko.getPinkoPosition();
     while (!glfwWindowShouldClose(window))
     {
         float ratio;
@@ -57,8 +59,7 @@ int main(void)
         glPushMatrix();
         position += MyPinko.getMove();
         positionY -= physic.getGravityFactor();
-        if (physic.checkExitToBorderX(position) == true
-            || physic.checkStaticObjectsOnPositionX(position, positionY, level.getStartPositionX()) == true)
+        if (physic.checkExitToBorderX(position) == true)
         {
             position -= MyPinko.getMove();
         }
@@ -66,12 +67,9 @@ int main(void)
         {
             positionY += physic.getGravityFactor();
         }
-        if  (physic.checkStaticObjectsOnPositionY(position, positionY, level.getStartPositionX(), level.getStartPositionY()) == true) {
+        if  (physic.checkStaticObjectsOnPositionY(position, positionY, pinkoPosition, level.getStartPositionY()) == true) {
             positionY += physic.getGravityFactor();
         }
-
-
-
 
         glTranslatef((float) position, positionY, 0.f);
         MyPinko.generatePinko();
