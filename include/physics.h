@@ -17,6 +17,7 @@ public:
     bool checkStaticObjectsOnPositionX(double positionX, double positionY, std::vector<double> pinkoPosition);
     bool checkStaticObjectsOnPositionY(double positionX, double positionY, std::vector<double> pinkoPosition, double startPositionY);
     bool findInX(double positionX, std::vector<double> elementsX, std::vector<double> pinkoPosition);
+    bool findInY(double positionX, std::vector<double> elementsX, std::vector<double> pinkoPosition);
     double getGravityFactor();
 private:
     std::map<double, std::vector<double> > staticObjects;
@@ -53,13 +54,6 @@ void physics::putStaticElements(std::map<double, std::vector<double> > staticObj
     staticObjects = staticObjects_;
 }
 
-
-bool physics::checkStaticObjectsOnPositionX(double positionX, double positionY, std::vector<double> pinkoPosition)
-{
-    //double positionPinkoInX = (startPositionX + positionX);
-    return false;
-}
-
 bool physics::checkStaticObjectsOnPositionY(double positionX, double positionY, std::vector<double> pinkoPosition, double startPositionY)
 {
     bool result = false;
@@ -72,6 +66,8 @@ bool physics::checkStaticObjectsOnPositionY(double positionX, double positionY, 
     {
         result = findInX(positionX, staticObjects[positionPinkoInY], pinkoPosition);
     }
+    // search conflits from y
+
     return result;
 }
 
@@ -84,6 +80,14 @@ bool physics::findInX(double positionX, std::vector<double> elementsX, std::vect
     {
         result = true;
     }
+
+    return result;
+}
+
+bool physics::findInY(double positionX, std::vector<double> elementsX, std::vector<double> pinkoPosition)
+{
+    // now i must add loop
+    bool result = false;
 
     return result;
 }

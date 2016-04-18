@@ -59,9 +59,11 @@ int main(void)
         glPushMatrix();
         position += MyPinko.getMove();
         positionY -= physic.getGravityFactor();
+        // chcekY
         if  (physic.checkStaticObjectsOnPositionY(position, positionY, pinkoPosition, level.getStartPositionY()) == true) {
             positionY += physic.getGravityFactor();
         }
+        //checkX
 
         if (physic.checkExitToBorderX(position) == true)
         {
