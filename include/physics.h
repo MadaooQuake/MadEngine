@@ -66,10 +66,6 @@ bool physics::checkStaticObjectsOnPositionY(double positionX, double positionY, 
     double positionPinkoInY = 0.0f;
 
     positionPinkoInY = positionY + startPositionY - (8*gravityFactor);
-    if(positionPinkoInY > 0.00f && positionPinkoInY < 0.001f)
-    {
-        positionPinkoInY = 0;
-    }
     positionPinkoInY = roundl(positionPinkoInY * 1000) / 1000;
 
     if (staticObjects.find(positionPinkoInY) != staticObjects.end())
