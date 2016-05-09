@@ -14,7 +14,7 @@ public:
     bool checkExitToBorderX(double positionX);
     bool checkExitToBorderY(double positionY);
     void putStaticElements(std::map<double, std::vector<double> > staticObjects_);
-    bool checkStaticObjectsOnPositionX(double positionX, double positionY, std::vector<double> pinkoPosition);
+    bool checkStaticObjectsOnPositionX(double positionX, double positionY, std::vector<double> pinkoPosition, double startPositionY);
     bool checkStaticObjectsOnPositionY(double positionX, double positionY, std::vector<double> pinkoPosition, double startPositionY);
     bool findInX(double positionX, std::vector<double> elementsX, std::vector<double> pinkoPosition);
     bool findInY(double positionX, std::vector<double> elementsX, std::vector<double> pinkoPosition);
@@ -66,7 +66,25 @@ bool physics::checkStaticObjectsOnPositionY(double positionX, double positionY, 
     {
         result = findInX(positionX, staticObjects[positionPinkoInY], pinkoPosition);
     }
-    // search conflits from y
+
+    return result;
+}
+
+bool physics::checkStaticObjectsOnPositionX(double positionX, double positionY, std::vector<double> pinkoPosition, double startPositionY)
+{
+    bool result = false;
+    double positionPinkoInY = 0.0f;
+
+    positionPinkoInY = positionY + startPositionY - (8*gravityFactor);
+    positionPinkoInY = roundl(positionPinkoInY * 1000) / 1000;
+    for(std::map<double, std::vector<double> >::iterator iter = staticObjects.begin(); iter != staticObjects.end(); iter++ )
+    {
+        //check y
+        if((*iter).first == positionPinkoInY)
+        {
+            std::cout << "oki";
+        }
+    }
 
     return result;
 }
@@ -88,6 +106,10 @@ bool physics::findInY(double positionX, std::vector<double> elementsX, std::vect
 {
     // now i must add loop
     bool result = false;
+    double positionX1 = pinkoPosition[0] + positionX;
+    double positionX2 = pinkoPosition[1] + positionX;
+
+    std::cout << positionX2 << std::endl;
 
     return result;
 }
